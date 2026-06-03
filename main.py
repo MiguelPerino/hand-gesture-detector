@@ -1,0 +1,33 @@
+import cv2
+from gesture_detector import GestureDetector
+from utils.drawing import draw_landmarks
+# Inicializa a webcam (0 representa a câmera padrão do computador)
+cap = cv2.VideoCapture(0)
+
+gesture = GestureDetector()
+
+while True:
+    # Captura frame por frame
+    ret, frame = cap.read() 
+    #ret retorna true ou false, pra ver se retornou o frame corretamente
+    
+    # Se o frame não for lido corretamente, encerra o loop
+    if not ret:
+        break
+    
+    # Exibe o frame capturado em uma janela
+
+    results = gesture.process(frame)
+
+    if results.hand_landmarks:
+        draw_landmarks(frame, results)
+
+    cv2.imshow('Video - Webcam', frame)
+
+    # Aguarda 1 milissegundo; se a tecla 'q' for pressionada, sai do loop
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# Libera o recurso da webcam e fecha todas as janelas
+cap.release()
+cv2.destroyAllWindows()
