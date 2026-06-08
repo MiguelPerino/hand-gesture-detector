@@ -1,6 +1,7 @@
 import cv2
 from gesture_detector import GestureDetector
-from utils.drawing import draw_landmarks
+from utils.drawing import draw_landmarks, draw_fingers_count
+from gestures.hand_gestures import count_fingers
 # Inicializa a webcam (0 representa a câmera padrão do computador)
 cap = cv2.VideoCapture(0)
 
@@ -21,6 +22,10 @@ while True:
 
     if results.hand_landmarks:
         draw_landmarks(frame, results)
+        for i, hand_landmarks in enumerate(results.hand_landmarks):   #usar enumerate pra detectar qual mão é, assim nao sobrescreve a escrita de count_fingers
+            total = count_fingers(hand_landmarks)
+            draw_fingers_count(frame, total, i)
+            print(f'{total} dedos levantados')
 
     cv2.imshow('Video - Webcam', frame)
 
