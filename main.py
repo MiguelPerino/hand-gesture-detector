@@ -22,11 +22,11 @@ while True:
 
     if results.hand_landmarks:
         draw_landmarks(frame, results)
-        for i, hand_landmarks in enumerate(results.hand_landmarks):   #usar enumerate pra detectar qual mão é, assim nao sobrescreve a escrita de count_fingers
-            total = count_fingers(hand_landmarks)
+        for i, (hand_landmarks, handedness) in enumerate(zip(results.hand_landmarks, results.handedness)):   #usar enumerate pra detectar qual mão é, assim nao sobrescreve a escrita de count_fingers
+            side = handedness[0].category_name
+            total = count_fingers(hand_landmarks, side)
             draw_fingers_count(frame, total, i)
-            print(f'{total} dedos levantados')
-
+            
     cv2.imshow('Video - Webcam', frame)
 
     # Aguarda 1 milissegundo; se a tecla 'q' for pressionada, sai do loop
