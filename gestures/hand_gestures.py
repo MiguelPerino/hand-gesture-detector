@@ -15,14 +15,16 @@ def count_fingers(hand_landmarks, side):
             up.append(1)
         
     if side == "Right":
-        if hand_landmarks[4].x > hand_landmarks[2].x:
+        if hand_landmarks[4].x > hand_landmarks[2].x or hand_landmarks[4].y > hand_landmarks[2].y:
             up.append(1)
+        
     else:
-        if hand_landmarks[4].x < hand_landmarks[2].x:
+        if hand_landmarks[4].x < hand_landmarks[2].x or hand_landmarks[4].y < hand_landmarks[2].y:
             up.append(1)
-
-
 
     return len(up)
 
+def is_peace(landmarks, side):
+    ...
 
+    
