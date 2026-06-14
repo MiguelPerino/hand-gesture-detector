@@ -12,9 +12,12 @@ def draw_landmarks(frame, results):
             cv2.circle(frame, (x, y), 5, (0, 255, 0), -1)
 
 
-def draw_fingers_count(frame, total, hand_index):
-    y_position = 50 + (hand_index * 50) #se for index 1 (mao 1) fica 50 px, se for mao 2 (index 2) fica 100px
-    cv2.putText(frame, f'Dedos: {total}', (10, y_position),
-        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-
-
+BLOCK_SIZE = 120
+def draw_hand_info(frame, total, peace, hand_index, side):
+    y_position = 50 + (hand_index * BLOCK_SIZE)
+    
+    cv2.putText(frame, f'Mao: {side}', (10, y_position), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255, 0), 2)
+    cv2.putText(frame, f"Fingers UP Right: {total}", (10, y_position + 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255, 0), 2)
+    
+    if peace:
+        cv2.putText(frame, f"PAZ E AMOR RAPAZ Right: {peace}", (10, y_position + 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
