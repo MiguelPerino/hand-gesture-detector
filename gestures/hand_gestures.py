@@ -30,13 +30,13 @@ def is_up(landmarks, side):
 
     up = []
     if side == "Right":
-        if landmarks[4].x > landmarks[2].x:
+        if landmarks[4].x > landmarks[2].x and landmarks[4].y < landmarks[0].y:
             up.append(True)
         else:
             up.append(False)     
                
     else:
-        if landmarks[4].x < landmarks[2].x:
+        if landmarks[4].x < landmarks[2].x and landmarks[4].y < landmarks[0].y:
             up.append(True)
         else:
             up.append(False)
@@ -61,3 +61,12 @@ def is_thumbs_up(landmarks, side):
     
     return up[0] and not up[1] and not up[2] and not up[3] and not up[4]
 
+def is_thumbs_down(landmarks, side):
+    if side == "Right":
+        thumbs_down = landmarks[4].x > landmarks[2].x and landmarks[4].y > landmarks[0].y
+    else:
+        thumbs_down = landmarks[4].x < landmarks[2].x and landmarks[4].y > landmarks[0].y
+    
+    up = is_up(landmarks, side)
+
+    return thumbs_down and not up[1] and not up[2] and not up[3] and not up[4]

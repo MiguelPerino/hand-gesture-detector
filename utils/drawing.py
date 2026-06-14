@@ -13,7 +13,7 @@ def draw_landmarks(frame, results):
 
 
 BLOCK_SIZE = 120
-def draw_hand_info(frame, total, peace, hand_index, side, thumbs):
+def draw_hand_info(frame, total, peace, hand_index, side, thumbs, thumbs_down):
     y_position = 50 + (hand_index * BLOCK_SIZE)
     
     cv2.putText(frame, f'Mao: {side}', (10, y_position), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255, 0), 2)
@@ -24,3 +24,6 @@ def draw_hand_info(frame, total, peace, hand_index, side, thumbs):
 
     if thumbs:
         cv2.putText(frame, f"JOINHA PRO CE: {thumbs}", (10, y_position + 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+
+    if thumbs_down:
+        cv2.putText(frame, f"Negativo: {thumbs_down}", (10, y_position + 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
