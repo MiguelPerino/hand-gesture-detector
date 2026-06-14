@@ -13,7 +13,7 @@ def draw_landmarks(frame, results):
 
 
 BLOCK_SIZE = 120
-def draw_hand_info(frame, total, peace, hand_index, side):
+def draw_hand_info(frame, total, peace, hand_index, side, thumbs):
     y_position = 50 + (hand_index * BLOCK_SIZE)
     
     cv2.putText(frame, f'Mao: {side}', (10, y_position), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255, 0), 2)
@@ -21,3 +21,6 @@ def draw_hand_info(frame, total, peace, hand_index, side):
     
     if peace:
         cv2.putText(frame, f"PAZ E AMOR RAPAZ Right: {peace}", (10, y_position + 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+
+    if thumbs:
+        cv2.putText(frame, f"JOINHA PRO CE: {thumbs}", (10, y_position + 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)

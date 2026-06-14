@@ -55,4 +55,9 @@ def is_peace(landmarks, side):
     up = is_up(landmarks, side)
     
     return up[1] and up[2] and not up[3] and not up[4] and not up[0]
+
+def is_thumbs_up(landmarks, side):
+    up = is_up(landmarks, side)
     
+    return up[0] and not up[1] and not up[2] and not up[3] and not up[4]
+
