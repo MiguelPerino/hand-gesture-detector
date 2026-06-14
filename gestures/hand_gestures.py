@@ -70,3 +70,8 @@ def is_thumbs_down(landmarks, side):
     up = is_up(landmarks, side)
 
     return thumbs_down and not up[1] and not up[2] and not up[3] and not up[4]
+
+def is_hang_loose(landmarks, side):
+    up = is_up(landmarks, side)
+    
+    return up[0] and not up[1] and not up[2] and not up[3] and up[4]

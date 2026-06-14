@@ -1,7 +1,7 @@
 import cv2
 from gesture_detector import GestureDetector
 from utils.drawing import draw_landmarks, draw_hand_info
-from gestures.hand_gestures import count_fingers, is_peace, is_thumbs_up, is_thumbs_down
+from gestures.hand_gestures import count_fingers, is_peace, is_thumbs_up, is_thumbs_down, is_hang_loose
 # Inicializa a webcam (0 representa a câmera padrão do computador)
 cap = cv2.VideoCapture(0)
 
@@ -28,8 +28,9 @@ while True:
             peace = is_peace(hand_landmarks, side)
             thumbs_up = is_thumbs_up(hand_landmarks, side)
             thumbs_down = is_thumbs_down(hand_landmarks, side)
+            hang_loose = is_hang_loose(hand_landmarks, side)
             
-            draw_hand_info(frame, total, peace, i, side, thumbs_up, thumbs_down)
+            draw_hand_info(frame, total, peace, i, side, thumbs_up, thumbs_down, hang_loose)
             
     cv2.imshow('Video - Webcam', frame)
 

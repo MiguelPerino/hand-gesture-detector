@@ -13,7 +13,7 @@ def draw_landmarks(frame, results):
 
 
 BLOCK_SIZE = 120
-def draw_hand_info(frame, total, peace, hand_index, side, thumbs, thumbs_down):
+def draw_hand_info(frame, total, peace, hand_index, side, thumbs, thumbs_down, hang_loose):
     y_position = 50 + (hand_index * BLOCK_SIZE)
     
     cv2.putText(frame, f'Mao: {side}', (10, y_position), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255, 0), 2)
@@ -27,3 +27,6 @@ def draw_hand_info(frame, total, peace, hand_index, side, thumbs, thumbs_down):
 
     if thumbs_down:
         cv2.putText(frame, f"Negativo: {thumbs_down}", (10, y_position + 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+        
+    if hang_loose:
+            cv2.putText(frame, f"HANG LOOSE: {hang_loose}", (10, y_position + 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
