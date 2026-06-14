@@ -7,7 +7,7 @@
 
 def count_fingers(hand_landmarks, side):
     fingers_y = [8, 12, 16, 20]
-    middle_y = [6, 10, 14, 18]
+    middle_y = [5, 9, 13, 17]
 
     up = []
     for  tip, joint in zip(fingers_y, middle_y):
@@ -15,11 +15,11 @@ def count_fingers(hand_landmarks, side):
             up.append(1)
         
     if side == "Right":
-        if hand_landmarks[4].x > hand_landmarks[2].x or hand_landmarks[4].y > hand_landmarks[2].y:
+        if hand_landmarks[4].x > hand_landmarks[2].x:
             up.append(1)
         
     else:
-        if hand_landmarks[4].x < hand_landmarks[2].x or hand_landmarks[4].y < hand_landmarks[2].y:
+        if hand_landmarks[4].x < hand_landmarks[2].x:
             up.append(1)
 
     return len(up)

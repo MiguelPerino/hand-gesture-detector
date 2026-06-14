@@ -4,9 +4,8 @@ def draw_landmarks(frame, results):
     
     for hand_landmarks in results.hand_landmarks:
         
+        h, w, _ = frame.shape
         for landmarks in hand_landmarks:
-
-            h, w, _ = frame.shape
             x = int(landmarks.x * w)
             y = int(landmarks.y * h)
 
