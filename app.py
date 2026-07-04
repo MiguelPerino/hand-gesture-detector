@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, Response
 import cv2
 from gesture_detector import GestureDetector
 from utils.drawing import draw_landmarks, draw_hand_info
@@ -42,3 +42,16 @@ def generate_frames():
                b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
         
         
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/video')
+def video():
+    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+if __name__ == '__main__':
+    app.run(debug=True, use_reloader=False)
+
+
+
